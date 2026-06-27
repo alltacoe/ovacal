@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ไข่ตกคำนวณ | OvuCalc
 
-## Getting Started
+เว็บแอปพลิเคชันสำหรับคำนวณวันไข่ตก ช่วงมีบุตรง่าย (Fertile Window) และวันคลอดโดยประมาณ (EDD) ตามหลักการแพทย์และมีงานวิจัยอ้างอิง (Evidence-Based) พร้อมการคำนวณสถิติรอบเดือนย้อนหลังเพื่อความแม่นยำสูงสุด
 
-First, run the development server:
+🔗 **GitHub Repository:** [https://github.com/alltacoe/ovacal](https://github.com/alltacoe/ovacal)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔬 ทฤษฎีและงานวิจัยทางการแพทย์ที่รองรับ
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **การคำนวณวันไข่ตก (Ovulation Day)**
+   - คำนวณโดยสูตร: `วันไข่ตก = วันแรกของประจำเดือนล่าสุด (LMP) + (ความยาวรอบเดือนเฉลี่ย - 14 วัน)`
+   - อิงข้อมูลทางสถิติว่าช่วงระยะเฟสหลังไข่ตก (Luteal Phase) จะค่อนข้างคงที่เฉลี่ย 14 วัน (ปกติ 10-17 วัน) ตามข้อมูลวิจัยของ **Cleveland Clinic** และ **NIH**
+2. **ช่วงวันโอกาสตั้งครรภ์สูง (Fertile Window)**
+   - ช่วงที่มีโอกาสตั้งครรภ์ง่ายที่สุดคือ **5 วันก่อนวันไข่ตก จนถึง 1 วันหลังไข่ตก (รวม 7 วัน)**
+   - อิงตามข้อมูลของ **องค์การอนามัยโลก (WHO)** และ **ACOG** เนื่องจากอสุจิสามารถมีชีวิตรอดในร่างกายเพศหญิงได้สูงสุด 5 วัน และไข่มีชีวิตรอดหลังการตกได้ 12-24 ชั่วโมง
+3. **การคำนวณวันคลอด (Estimated Due Date - EDD)**
+   - อิงตาม **Naegele's Rule (ปรับปรุง)**: `EDD = LMP + 280 วัน + (ความยาวรอบเดือน - 28 วัน)` เพื่อให้รองรับรอบเดือนของผู้หญิงที่ไม่ได้ยาว 28 วันพอดี
+4. **การวัดความสม่ำเสมอของรอบเดือน (Cycle Regularity)**
+   - คำนวณค่าเฉลี่ย, ส่วนเบี่ยงเบนมาตรฐาน (SD), และสัมประสิทธิ์การแปรผัน (CV) ของรอบเดือน
+   - หากค่า CV > 10% ระบบจะจัดเป็นรอบเดือนแบบไม่สม่ำเสมอ (Irregular Cycle) ตามเกณฑ์งานวิจัยของ **Fehring et al. (2006)**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 ฟีเจอร์หลัก (Features)
 
-To learn more about Next.js, take a look at the following resources:
+- **2 โหมดป้อนข้อมูล:**
+  - **⚡ ด่วน (Quick):** ป้อนวันประจำเดือนล่าสุดและเลือกความยาวรอบเดือนจาก Slider
+  - **📋 ย้อนหลัง (History):** ป้อนประวัติประจำเดือนได้ไม่จำกัดรอบ ระบบจะคำนวณค่าเฉลี่ยและสถิติให้โดยอัตโนมัติ
+- **ระบบแจ้งเตือนรอบไม่สม่ำเสมอ:** แสดงแถบคำเตือนหากพบความผันผวนของรอบเดือนเกิน 10%
+- **สรุปข้อมูลครบครัน:** วันไข่ตก, ช่วงมีบุตรง่าย (แบ่งระดับโอกาส Peak/High/Moderate), วันคลอด และอายุครรภ์
+- **ปฏิทินอัจฉริยะ (Bilingual Interactive Calendar):** ไฮไลต์สีตามช่วงรอบเดือน (สีแดง=ประจำเดือน, สีส้ม=วันไข่ตก Peak, สีชมพู=มีบุตรง่ายสูง) พร้อม Tooltip รายละเอียดเมื่อแตะ/ชี้
+- **รองรับ 2 ภาษา:** ภาษาไทย และ English (สลับได้ทันทีผ่าน Toggle ด้านบน)
+- **จำข้อมูล:** บันทึกประวัติและภาษาที่เลือกผ่าน LocalStorage โหลดขึ้นมาใช้งานต่อได้ทันที
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💻 การติดตั้งและทดสอบภายในเครื่อง (Local Setup)
 
-## Deploy on Vercel
+1. Clone repository:
+   ```bash
+   git clone https://github.com/alltacoe/ovacal.git
+   cd ovacal
+   ```
+2. ติดตั้ง Dependencies:
+   ```bash
+   npm install
+   ```
+3. รัน Development Server:
+   ```bash
+   npm run dev
+   ```
+4. เปิดเบราว์เซอร์และเข้าไปที่: [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 การนำขึ้นระบบโฮสติ้งฟรี (Free Hosting Guide)
+
+แนะนำให้ใช้ **Vercel** เนื่องจากเป็นแพลตฟอร์มที่สร้างโดยทีมงานผู้พัฒนา Next.js โดยตรง ปลอดภัย ฟรี และรองรับระบบ CI/CD (อัปเดตเว็บอัตโนมัติเมื่อกด push โค้ดใหม่)
+
+### วิธีการ Deploy บน Vercel (ฟรี 100%):
+
+1. ไปที่เว็บไซต์ [Vercel](https://vercel.com/) และคลิก **Sign Up** (แนะนำให้สมัครโดยการเชื่อมโยงกับบัญชี **GitHub**)
+2. เมื่อเข้าสู่ระบบแล้ว ให้คลิกปุ่ม **Add New** แล้วเลือก **Project**
+3. ที่หน้านำเข้าโครงการ (Import Project) ให้ค้นหาและกดปุ่ม **Import** ที่ข้างโครงการชื่อ **ovacal**
+4. ในหน้าการตั้งค่าโครงสร้าง ไม่ต้องแก้ไขค่าใดๆ ให้คลิกปุ่ม **Deploy** ได้ทันที
+5. รอระบบทำการ Build หน้าเว็บประมาณ 1-2 นาที เมื่อเสร็จเรียบร้อยแล้ว Vercel จะให้ URL ที่เป็นสาธารณะ (เช่น `https://ovacal.vercel.app`) ซึ่งสามารถเปิดเข้าใช้งานได้ทันทีจากทุกอุปกรณ์!
+

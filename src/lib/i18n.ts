@@ -7,7 +7,7 @@ export type Lang = "th" | "en";
 export const translations = {
   th: {
     // App
-    appName: "ไข่ตกคำนวณ",
+    appName: "คำนวณวันไข่ตก",
     appTagline: "คำนวณวันไข่ตกและวันตั้งครรภ์",
     appDesc:
       "คำนวณวันไข่ตก ช่วงมีบุตรง่าย และวันคลอดโดยอิงทฤษฎีจากงานวิจัย (Evidence-Based)",

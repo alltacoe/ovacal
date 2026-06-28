@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ไข่ตกคำนวณ | OvuCalc — คำนวณวันไข่ตกและวันตั้งครรภ์",
+  title: "คำนวณวันไข่ตก | OvuCalc — คำนวณวันไข่ตกและวันตั้งครรภ์",
   description:
     "คำนวณวันไข่ตก ช่วงมีบุตรง่าย และวันคลอดโดยอิงทฤษฎีจากงานวิจัย (Evidence-Based) รองรับประวัติรอบเดือนหลายรอบ",
   keywords: [
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "ovulation calculator","fertile window","due date calculator","pregnancy",
   ],
   openGraph: {
-    title: "ไข่ตกคำนวณ | OvuCalc",
+    title: "คำนวณวันไข่ตก | OvuCalc",
     description: "คำนวณวันไข่ตกและวันตั้งครรภ์จากหลักฐานทางวิทยาศาสตร์",
     type: "website",
   },
